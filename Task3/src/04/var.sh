@@ -16,7 +16,7 @@ MASK_PREFIX=$(ip -4 -o a show enp0s3 | awk '{split($4, a, "/"); print a[2]}')
 
 MASK=$(ipcalc $MASK_PREFIX | grep "Netmask" | awk '{print $2}')
 
-GATEWAY=$(ip r show default | awk '{print $3}')
+GATEWAY=$(ip r show default | grep "enp0s3" | awk '{print $3}')
 
 RAM_TOTAL=$(free | grep "Mem:" | awk '{printf "%.3f GB\n", $2/1024/1024}')
 
